@@ -30,7 +30,7 @@ public class DictionaryRepositoryIntegrationTest {
 
     @Test
     public void shouldSaveDictionary(){
-        Dictionary dictionary = new Dictionary("city", "Cracow");
+        Dictionary dictionary = new Dictionary("city", "KRK", "Cracow");
 
         Dictionary saved = dictionaryRepository.save(dictionary);
 
@@ -39,8 +39,8 @@ public class DictionaryRepositoryIntegrationTest {
 
     @Test
     public void shouldFindAllDictionariesByName(){
-        Dictionary city = new Dictionary("city", "Cracow");
-        Dictionary currency = new Dictionary("currency", "PLN");
+        Dictionary city = new Dictionary("city", "KRK", "Cracow");
+        Dictionary currency = new Dictionary("currency", "PLN", "Polish Zloty");
 
         dictionaryRepository.save(city);
         Dictionary persisted = dictionaryRepository.save(currency);

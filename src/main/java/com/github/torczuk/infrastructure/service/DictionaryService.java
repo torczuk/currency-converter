@@ -18,4 +18,10 @@ public class DictionaryService {
         sort(cities);
         return cities;
     }
+
+    public List<Dictionary> currencies() {
+        List<Dictionary> currencies = dictionaryRepository.findAllByName("currency");
+        sort(currencies);
+        return currencies;
+    }
 }

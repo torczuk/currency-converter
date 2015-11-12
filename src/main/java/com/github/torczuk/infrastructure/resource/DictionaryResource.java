@@ -19,7 +19,12 @@ public class DictionaryResource {
 
     @RequestMapping(value = "city", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Dictionary> cities(HttpServletResponse response) {
-//        response.setHeader("Cache-Control", );
         return dictionaryService.cities();
     }
+
+    @RequestMapping(value = "currency", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Dictionary> currencies(HttpServletResponse response) {
+        return dictionaryService.currencies();
+    }
+
 }

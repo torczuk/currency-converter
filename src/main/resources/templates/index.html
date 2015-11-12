@@ -3,13 +3,62 @@
 <head>
     <link type="text/css" rel="stylesheet" href="/css/bootstrap.css" />
     <link type="text/css" rel="stylesheet" href="/css/custom.css" />
-    <script>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"/>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $.ajax({
+            type:"GET",
+            url: "/dictionary/currency",
+            dataType: "json",
+            success: function(cities) {
+                $.each(cities, function (i, item) {
+                    $('#baseCurrencyCode').append($('<option></option>', {
+                        value: item.code,
+                        text : item.value
+                    }));
+                    $('#targetCurrencyCode').append($('<option></option>', {
+                        value: item.code,
+                        text : item.value
+                    }));
+                });
+            }
+            });
+        });
     </script>
 </head>
 <body>
 
-<h1>Home sweet home :) <h1>
+<div class="center-block form-medium">
+    <h5>Calculate ammount</h5>
+    <form id="conversionForm" class="form-horizontal">
+        <div class="form-group">
+            <label for="amount" class="col-sm-2 control-label">Amount</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" name="amount" id="amount" placeholder="0.0"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="baseCurrencyCode" class="col-sm-2 control-label">Base</label>
+            <div class="col-sm-5">
+                <select class="form-control" name="baseCurrencyCode" id="baseCurrencyCode" placeholder="0.0">
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="targetCurrencyCode" class="col-sm-2 control-label">Target</label>
+            <div class="col-sm-5">
+                <select class="form-control" name="targetCurrencyCode" id="targetCurrencyCode" placeholder="0.0">
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-8">
+                <button type="submit" class="btn btn-default">Calculate</button>
+            </div>
+        </div>
+    </form>
+</div>
 
 </body>
 </html>
