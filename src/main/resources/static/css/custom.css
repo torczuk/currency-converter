@@ -1,0 +1,23 @@
+@media (min-width: 900px) {
+  .container {
+    width: 800px;
+  }
+}
+
+body {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.form-medium {
+  max-width: 420px;
+  padding: 10px;
+  margin: 0 auto;
+}
+
+.form-large {
+  max-width: 600px;
+  padding: 10px;
+  margin: 0 auto;
+}
+
