@@ -9,10 +9,10 @@ create table dictionary
 create table user
 (
     id int primary key,
-    firstName varchar(64),
-    lastName varchar(64),
-    email varchar(64),
-    password varchar(64),
+    firstName varchar(64) not null,
+    lastName varchar(64) not null,
+    email varchar(64) unique,
+    password varchar(64) not null,
     city varchar(64),
     address varchar(64),
     zipCode varchar(64)
