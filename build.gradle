@@ -1,0 +1,45 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.7.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+jar {
+    baseName = 'currency-echange'
+    version =  '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    runtime 'org.hsqldb:hsqldb:2.3.2'
+    runtime 'org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.1.Final'
+    runtime 'org.hibernate:hibernate-entitymanager:5.0.3.Final'
+    runtime 'org.flywaydb:flyway-core:3.2.1'
+
+    compile 'org.springframework.data:spring-data-jpa:1.7.1.RELEASE'
+    compile 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    compile 'org.springframework.boot:spring-boot-starter-security'
+    compile 'org.hibernate:hibernate-core:5.0.3.Final'
+
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.assertj:assertj-core:3.2.0'
+    testCompile 'org.springframework:spring-test:4.1.6.RELEASE'
+    testCompile 'org.mockito:mockito-all:1.10.19'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}
