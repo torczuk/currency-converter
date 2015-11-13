@@ -1,4 +1,4 @@
-package com.github.torczuk.infrastructure.service;
+package com.github.torczuk.domain.service;
 
 import com.github.torczuk.domain.model.Dictionary;
 import com.github.torczuk.domain.repository.DictionaryRepository;

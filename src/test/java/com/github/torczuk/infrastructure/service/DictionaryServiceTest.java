@@ -2,15 +2,13 @@ package com.github.torczuk.infrastructure.service;
 
 import com.github.torczuk.domain.model.Dictionary;
 import com.github.torczuk.domain.repository.DictionaryRepository;
-import com.github.torczuk.util.Fakes;
-import org.assertj.core.api.Assertions;
+import com.github.torczuk.domain.service.DictionaryService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static java.util.Arrays.asList;
