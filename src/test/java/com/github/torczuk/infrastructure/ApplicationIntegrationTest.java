@@ -1,4 +1,4 @@
-package com.github.torczuk.infrastructure.repository;
+package com.github.torczuk.infrastructure;
 
 import com.github.torczuk.Application;
 import org.assertj.core.api.Assertions;
