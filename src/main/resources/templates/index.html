@@ -6,23 +6,58 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"/>
     <script type="text/javascript">
+        var userId = undefined;
         $(document).ready(function() {
             $.ajax({
-            type:"GET",
-            url: "/dictionary/currency",
-            dataType: "json",
-            success: function(cities) {
-                $.each(cities, function (i, item) {
-                    $('#baseCurrencyCode').append($('<option></option>', {
-                        value: item.code,
-                        text : item.value
-                    }));
-                    $('#targetCurrencyCode').append($('<option></option>', {
-                        value: item.code,
-                        text : item.value
-                    }));
+                type:"GET",
+                url: "/userId",
+                success: function(data){
+                    alert(data);
+                    userId = data;
+                }
+            });
+            $.ajax({
+                type:"GET",
+                url: "/dictionary/currency",
+                dataType: "json",
+                success: function(cities) {
+                    $.each(cities, function (i, item) {
+                        $('#baseCurrencyCode').append($('<option></option>', {
+                            value: item.code,
+                            text : item.value
+                        }));
+                        $('#targetCurrencyCode').append($('<option></option>', {
+                            value: item.code,
+                            text : item.value
+                        }));
+                    });
+                }
+            });
+
+           $("#converterForm").submit(function(e) {
+                $.ajax({
+                    type: "POST",
+                    url: "/user/" + userId + "/conversion/",
+                    data: {
+                        amount: $('#amount').val(),
+                        baseCurrencyCode: $('#baseCurrencyCode').val(),
+                        targetCurrencyCode: $('#targetCurrencyCode').val()
+                    },
+                    beforeSend: function(xhr) {
+                        $('#conversionError').text('');
+                        $('#conversionInfo').text('Converting');
+                    },
+                    success: function(data) {
+                        var selectedAmount = $('#amount').val();
+                        var selectedBaseCurrency = $('#baseCurrencyCode').val();
+                        var selectedTargetCurrency = $('#targetCurrencyCode').val();
+                        $('#conversionInfo').text(selectedAmount + " " + selectedBaseCurrency + " equals " + data + " " + selectedTargetCurrency);
+                    },
+                    error: function(any) {
+                        $('#conversionError').text(any)
+                    }
                 });
-            }
+                e.preventDefault();
             });
         });
     </script>
@@ -30,8 +65,9 @@
 <body>
 
 <div class="center-block form-medium">
-    <h5>Calculate ammount</h5>
-    <form id="conversionForm" class="form-horizontal">
+    <p id="conversionInfo" class="text-primary"></p>
+    <p id="conversionError" class="text-danger"></p>
+    <form id="converterForm" class="form-horizontal">
         <div class="form-group">
             <label for="amount" class="col-sm-2 control-label">Amount</label>
             <div class="col-sm-5">

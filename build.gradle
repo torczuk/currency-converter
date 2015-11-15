@@ -35,7 +35,7 @@ dependencies {
     compile 'org.hibernate:hibernate-core:5.0.3.Final'
     compile 'org.json:json:20150729'
     compile 'org.glassfish.jersey.core:jersey-client:2.22.1'
-
+    compile 'com.google.guava:guava:18.0'
 
     testCompile 'junit:junit:4.11'
     testCompile 'org.hamcrest:hamcrest-core:1.3'

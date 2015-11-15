@@ -1,15 +1,16 @@
 package com.github.torczuk.domain.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 @Entity
-public class Conversion extends AbstractEntity {
+public class Conversion extends AbstractEntity implements Comparable<Conversion> {
 
-    private Long timestamp;
-    private Long userId;
-    private String amount;
-    private String baseCurrency;
-    private String targetCurrency;
+    @Column(nullable = false) private Long timestamp;
+    @Column(nullable = false) private Long userId;
+    @Column(nullable = false) private String amount;
+    @Column(nullable = false) private String baseCurrency;
+    @Column(nullable = false) private String targetCurrency;
 
     public Conversion() {
     }
@@ -20,6 +21,11 @@ public class Conversion extends AbstractEntity {
         this.amount = amount;
         this.baseCurrency = baseCurrency;
         this.targetCurrency = targetCurrency;
+    }
+
+    public Conversion(Long id, Long timestamp, Long userId, String amount, String baseCurrency, String targetCurrency) {
+        this(timestamp, userId, amount, baseCurrency, targetCurrency);
+        setUserId(id);
     }
 
     public Long getTimestamp() {
@@ -60,5 +66,9 @@ public class Conversion extends AbstractEntity {
 
     public void setTargetCurrency(String targetCurrency) {
         this.targetCurrency = targetCurrency;
+    }
+
+    @Override public int compareTo(Conversion conversion) {
+        return this.timestamp.compareTo(conversion.timestamp);
     }
 }

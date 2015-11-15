@@ -2,6 +2,7 @@ package com.github.torczuk.infrastructure.service;
 
 import com.github.torczuk.domain.exception.CurrencyConversionException;
 import com.github.torczuk.domain.service.CurrencyConverter;
+import com.github.torczuk.domain.service.CurrencyConverterService;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -19,11 +20,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 
 @RunWith(MockitoJUnitRunner.class)
-public class CurrencyLayerRestConverterTest {
+public class CurrencyConverterServiceTest {
     @Rule public  ExpectedException expectedException = ExpectedException.none();
 
     @Mock private CurrencyConverter currencyConverter;
-    @InjectMocks private CurrencyLayerRestConverter currencyConverterService;
+    @InjectMocks private CurrencyConverterService currencyConverterService;
 
     @Before
     public void setUp() {
