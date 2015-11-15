@@ -21,4 +21,8 @@ public class JsonUsdCurrencyRates {
         }
         return convertedAmount;
     }
+
+    @Override public String toString() {
+        return currencyRates;
+    }
 }
