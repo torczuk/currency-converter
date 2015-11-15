@@ -5,6 +5,4 @@ import org.springframework.data.repository.Repository;
 
 public interface TestUserRepository extends Repository<User, Long>{
     void deleteAll();
-
-    int count();
 }

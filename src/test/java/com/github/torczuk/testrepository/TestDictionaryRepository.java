@@ -5,5 +5,4 @@ import org.springframework.data.repository.Repository;
 
 public interface TestDictionaryRepository extends Repository<Dictionary, Long>{
     void deleteAll();
-    int count();
 }

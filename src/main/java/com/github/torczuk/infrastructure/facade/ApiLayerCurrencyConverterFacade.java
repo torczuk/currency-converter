@@ -31,7 +31,7 @@ public class ApiLayerCurrencyConverterFacade implements CurrencyConverterFacade 
 
     @Autowired
     public ApiLayerCurrencyConverterFacade(
-            @Value("api.access.key") String apiAccessKey,
+            @Value("${api.access.key}") String apiAccessKey,
             DictionaryService dictionaryService) {
         Assert.notNull(apiAccessKey, "API access key cannot be null");
         this.apiAccessKey = apiAccessKey;
@@ -71,8 +71,8 @@ public class ApiLayerCurrencyConverterFacade implements CurrencyConverterFacade 
     }
 
     private void update(Response response) {
-        latestRates = new JsonUsdCurrencyRates(response.getEntity().toString());
-        etagHeaderValue = response.getHeaders().get(HttpHeaders.ETAG).toString();
+        latestRates = new JsonUsdCurrencyRates(response.readEntity(String.class));
+        etagHeaderValue = response.getHeaderString(HttpHeaders.ETAG);
     }
 
     protected String getSupportedCurrencies() {
