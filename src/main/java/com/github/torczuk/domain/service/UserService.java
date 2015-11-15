@@ -5,6 +5,7 @@ import com.github.torczuk.domain.model.User;
 import com.github.torczuk.domain.repository.UserRepository;
 import com.github.torczuk.dto.SignUpDetails;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -32,5 +33,14 @@ public class UserService implements UserDetailsService {
             throw new UsernameNotFoundException("User not found");
         }
         return user;
+    }
+
+    public Long getCurrentUserId() {
+        Long userId = null;
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (user != null) {
+            userId = user.getId();
+        }
+        return userId;
     }
 }

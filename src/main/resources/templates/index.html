@@ -4,16 +4,35 @@
     <link type="text/css" rel="stylesheet" href="/css/bootstrap.css" />
     <link type="text/css" rel="stylesheet" href="/css/custom.css" />
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"/>
+    <script type="text/javascript" src="js/jquery.js" />
     <script type="text/javascript">
         var userId = undefined;
+
+        var getConversionHistory = function(id) {
+            $.ajax({
+                type:"GET",
+                url: "/user/" + id + "/conversion?limit=10",
+                dataType: "json",
+                success: function(conversions) {
+                    $('#conversionHistory').empty();
+                    $.each(conversions, function (i, item) {
+                        console.log(item);
+                        $('#conversionHistory').append(
+                        '<li class="list-group-item">'
+                        + item.date + "     " + item.amount + " " + item.baseCurrency + " = " + item.convertedAmount + " " + item.targetCurrency
+                        + '</li>');
+                    });
+                }
+            });
+        }
+
         $(document).ready(function() {
             $.ajax({
                 type:"GET",
                 url: "/userId",
                 success: function(data){
-                    alert(data);
                     userId = data;
+                    getConversionHistory(data);
                 }
             });
             $.ajax({
@@ -52,6 +71,7 @@
                         var selectedBaseCurrency = $('#baseCurrencyCode').val();
                         var selectedTargetCurrency = $('#targetCurrencyCode').val();
                         $('#conversionInfo').text(selectedAmount + " " + selectedBaseCurrency + " equals " + data + " " + selectedTargetCurrency);
+                        getConversionHistory(userId);
                     },
                     error: function(any) {
                         $('#conversionError').text(any)
@@ -94,6 +114,9 @@
             </div>
         </div>
     </form>
+
+    <h5>Conversion history</h5>
+    <ul id="conversionHistory" class="list-group"></ul>
 </div>
 
 </body>

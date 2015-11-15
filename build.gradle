@@ -47,3 +47,9 @@ dependencies {
 task wrapper(type: Wrapper) {
     gradleVersion = '2.3'
 }
+
+test {
+    afterTest { desc, result ->
+        println "RUNNING  ${desc.name} [${desc.className}] result: ${result.resultType}"
+    }
+}

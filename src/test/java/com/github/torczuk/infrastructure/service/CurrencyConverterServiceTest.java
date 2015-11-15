@@ -1,6 +1,7 @@
 package com.github.torczuk.infrastructure.service;
 
 import com.github.torczuk.domain.exception.CurrencyConversionException;
+import com.github.torczuk.domain.service.ConversionHistoryService;
 import com.github.torczuk.domain.service.CurrencyConverter;
 import com.github.torczuk.domain.service.CurrencyConverterService;
 import org.junit.Before;
@@ -24,6 +25,7 @@ public class CurrencyConverterServiceTest {
     @Rule public  ExpectedException expectedException = ExpectedException.none();
 
     @Mock private CurrencyConverter currencyConverter;
+    @Mock private ConversionHistoryService conversionHistoryService;
     @InjectMocks private CurrencyConverterService currencyConverterService;
 
     @Before

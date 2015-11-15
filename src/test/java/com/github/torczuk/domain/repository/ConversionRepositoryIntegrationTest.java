@@ -28,7 +28,7 @@ public class ConversionRepositoryIntegrationTest {
 
     @Test
     public void shouldSaveConversion(){
-        Conversion conversion = new Conversion(10L, 1L, "10.2", "USD", "PLN");
+        Conversion conversion = new Conversion(10L, 1L, "10.2", "20", "USD", "PLN");
 
         Conversion saved = conversionRepository.save(conversion);
 
@@ -37,8 +37,8 @@ public class ConversionRepositoryIntegrationTest {
 
     @Test
     public void shouldFindAllConversionsByUserId(){
-        Conversion user1Conversion = new Conversion(10L, 1L, "10.2", "USD", "PLN");
-        Conversion user2Conversion = new Conversion(9L, 2L, "1.2", "USD", "YEN");
+        Conversion user1Conversion = new Conversion(10L, 1L, "10.2", "20", "USD", "PLN");
+        Conversion user2Conversion = new Conversion(9L, 2L, "1.2", "30", "USD", "YEN");
 
         Conversion user1ConversionSaved = conversionRepository.save(user1Conversion);
         conversionRepository.save(user2Conversion);

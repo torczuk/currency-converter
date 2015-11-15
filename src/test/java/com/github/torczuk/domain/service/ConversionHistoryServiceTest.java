@@ -54,7 +54,7 @@ public class ConversionHistoryServiceTest {
 
     private static List<Conversion> generateConversion(int size) {
         return IntStream.range(0, size + 1)
-                .mapToObj(n -> new Conversion(id(), valueOf(size - n), USER_ID, AMOUNT, BASE_CURRENCY, TARGET_CURRENCY))
+                .mapToObj(n -> new Conversion(id(), valueOf(size - n), USER_ID, AMOUNT, AMOUNT, BASE_CURRENCY, TARGET_CURRENCY))
                 .collect(toList());
     }
 
