@@ -1,6 +1,7 @@
 buildscript {
     repositories {
         mavenCentral()
+        jcenter()
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.7.RELEASE")
@@ -12,13 +13,16 @@ apply plugin: 'idea'
 apply plugin: 'spring-boot'
 
 jar {
-    baseName = 'currency-echange'
-    version =  '0.1.0'
+    baseName = 'currency-exchange'
+    version =  '1.0'
 }
 
 repositories {
     mavenCentral()
+    jcenter()
 }
+
+mainClassName = "Application"
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -53,3 +57,19 @@ test {
         println "RUNNING  ${desc.name} [${desc.className}] result: ${result.resultType}"
     }
 }
+
+task stage(dependsOn: ['clean', 'build', 'installApp'])
+
+
+//task stage(type: Copy, dependsOn: [clean, build]) {
+//    from jar.archivePath
+//    into project.rootDir
+//    rename {
+//        'currency-exchange.jar'
+//    }
+//}
+//stage.mustRunAfter(clean)
+//
+//clean << {
+//    project.file('currency-exchange.jar').delete()
+//}
