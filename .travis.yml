@@ -10,3 +10,8 @@ cache:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
 script: ./gradlew clean check
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: 62aea62f-00b7-43e9-aaf4-27f7c6f5473e
