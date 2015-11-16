@@ -22,7 +22,9 @@ repositories {
     jcenter()
 }
 
-mainClassName = "Application"
+springBoot {
+    mainClass = "com.github.torczuk.Application"
+}
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
