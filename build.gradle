@@ -58,7 +58,7 @@ test {
     }
 }
 
-task stage(dependsOn: ['jar'])
+task stage(dependsOn: ['build', 'installApp'])
 
 
 //task stage(type: Copy, dependsOn: [clean, build]) {
