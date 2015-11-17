@@ -18,6 +18,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
+                .headers()
+                .and()
                 .authorizeRequests()
                 .antMatchers(
                         "/login",
@@ -36,7 +38,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
             .logout()
-                .permitAll();
+                .logoutUrl("/logout")
+                .permitAll()
+            .and().headers().cacheControl().disable();
     }
 
 //    @Autowired

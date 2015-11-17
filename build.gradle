@@ -14,7 +14,7 @@ apply plugin: 'spring-boot'
 
 jar {
     baseName = 'currency-exchange'
-    version =  '1.0'
+    version =  '1.1'
 }
 
 repositories {
@@ -61,17 +61,3 @@ test {
 }
 
 task stage(dependsOn: ['build', 'installApp'])
-
-
-//task stage(type: Copy, dependsOn: [clean, build]) {
-//    from jar.archivePath
-//    into project.rootDir
-//    rename {
-//        'currency-exchange.jar'
-//    }
-//}
-//stage.mustRunAfter(clean)
-//
-//clean << {
-//    project.file('currency-exchange.jar').delete()
-//}

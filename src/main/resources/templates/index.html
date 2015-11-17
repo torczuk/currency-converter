@@ -64,7 +64,7 @@
                     },
                     beforeSend: function(xhr) {
                         $('#conversionError').text('');
-                        $('#conversionInfo').text('Converting');
+                        $('#conversionInfo').text('Please wait - calculating ...');
                     },
                     success: function(data) {
                         var selectedAmount = $('#amount').val();
@@ -73,8 +73,9 @@
                         $('#conversionInfo').text(selectedAmount + " " + selectedBaseCurrency + " equals " + data + " " + selectedTargetCurrency);
                         getConversionHistory(userId);
                     },
-                    error: function(any) {
-                        $('#conversionError').text(any)
+                    error: function(data) {
+                        $('#conversionInfo').text('');
+                        $('#conversionError').text(data.responseText);
                     }
                 });
                 e.preventDefault();
@@ -83,7 +84,9 @@
     </script>
 </head>
 <body>
-
+<div id="logout" class="pull-right padding20">
+    <a href="/logout">logout</a>
+</div>
 <div class="center-block form-medium">
     <p id="conversionInfo" class="text-primary"></p>
     <p id="conversionError" class="text-danger"></p>

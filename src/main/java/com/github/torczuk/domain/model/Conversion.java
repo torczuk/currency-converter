@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
-public class Conversion extends AbstractEntity implements Comparable<Conversion> {
+public class Conversion extends AbstractEntity implements Comparable<Conversion>, CreationDateAware {
 
     @Column(nullable = false) private Long timestamp;
     @Column(nullable = false) private Long userId;
@@ -88,5 +88,9 @@ public class Conversion extends AbstractEntity implements Comparable<Conversion>
 
     @Override public int compareTo(Conversion conversion) {
         return conversion.timestamp.compareTo(this.timestamp);
+    }
+
+    @Override public Date creationDate() {
+        return new Date(getTimestamp());
     }
 }

@@ -21,20 +21,21 @@ public class CurrencyConverterService {
     }
 
     public BigDecimal convert(BigDecimal amount, String baseCurrency, String targetCurrency) {
-        if(amount.signum() == -1) {
+        if (amount.signum() == -1) {
             throw new CurrencyConversionException("Amount cannot be negative");
         }
-        if(baseCurrency.equals(targetCurrency)) {
-            return amount;
+        BigDecimal converted;
+        if (theSameOrZeroConversion(amount, baseCurrency, targetCurrency)) {
+            converted = amount;
+        } else {
+            converted = amount.multiply(currencyConverter.convert(baseCurrency, targetCurrency));
         }
-        if(BigDecimal.ZERO.equals(amount)) {
-            return amount;
-        }
-        BigDecimal converted = amount.multiply(currencyConverter.convert(baseCurrency, targetCurrency));
-
         Conversion conversion = new Conversion(new Date().getTime(), null, amount.toString(), converted.toString(), baseCurrency, targetCurrency);
         conversionHistoryService.saveUserConversion(conversion);
-
         return converted;
+    }
+
+    private static boolean theSameOrZeroConversion(BigDecimal amount, String baseCurrency, String targetCurrency) {
+        return baseCurrency.equals(targetCurrency) || BigDecimal.ZERO.equals(amount);
     }
 }

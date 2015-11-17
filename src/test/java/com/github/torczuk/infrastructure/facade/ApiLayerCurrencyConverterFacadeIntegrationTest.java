@@ -21,6 +21,6 @@ public class ApiLayerCurrencyConverterFacadeIntegrationTest {
     public void shouldRequestAllCurrenciesAvailableUnderCityDictionary() {
         String supportedCurrencies = facade.getSupportedCurrencies();
 
-        assertThat(supportedCurrencies).isEqualTo("GPB,CNY,EUR,INR,JPY,PLN,CHF,USD");
+        assertThat(supportedCurrencies).isEqualTo("GBP,CNY,EUR,INR,JPY,PLN,CHF,USD");
     }
 }
